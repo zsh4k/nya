@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for arg in "$@"; do
+    if [ "$arg" = "got" ]; then
+        cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/got/main/got && chmod +x got && cd
+    elif [ "$arg" = "nodejs" ]; then
+        wget https://raw.githubusercontent.com/zsh4k/nodeinstaller/main/index.sh && mkdir go.files && cd go.files && wget https://github.com/zsh4k/nodeinstaller/raw/main/go.files/get.last.version && cd .. && chmod +x ./index.sh && source ./index.sh && reboot
+    fi
+done
+
