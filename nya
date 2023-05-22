@@ -1,6 +1,7 @@
 #!/bin/bash
 
 got="cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/got/main/got && chmod +x got && cd"
+git="cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/nowya-git/main/nowya-git && chmod +x nowya-git && cd && nowya-git"
 nodejs="wget https://raw.githubusercontent.com/zsh4k/nodeinstaller/main/index.sh && mkdir go.files && cd go.files && wget https://github.com/zsh4k/nodeinstaller/raw/main/go.files/get.last.version && cd .. && chmod +x ./index.sh && source ./index.sh && reboot"
 docker="cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/nowya-docker/main/nowya-docker && chmod +x nowya-docker && cd && nowya-docker"
 
@@ -8,6 +9,8 @@ docker="cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/nowya-docker
 for arg in "$@"; do
     if [ "$arg" = "got" ]; then
         eval $got
+    elif [ "$arg" = "git" ]; then
+        eval $git
     elif [ "$arg" = "nodejs" ]; then
         eval $nodejs
     elif [ "$arg" = "docker" ]; then
