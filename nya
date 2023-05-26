@@ -1,19 +1,31 @@
 #!/bin/bash
 
-got="cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/got/main/got && chmod +x got && cd"
-git="cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/nowya-git/main/nowya-git && chmod +x nowya-git && cd && nowya-git"
-nodejs="wget https://raw.githubusercontent.com/zsh4k/nodeinstaller/main/index.sh && mkdir go.files && cd go.files && wget https://github.com/zsh4k/nodeinstaller/raw/main/go.files/get.last.version && cd .. && chmod +x ./index.sh && source ./index.sh && reboot"
-docker="cd /usr/bin && wget https://raw.githubusercontent.com/zsh4k/nowya-docker/main/nowya-docker && chmod +x nowya-docker && cd && nowya-docker"
+# Repositorios
+got="https://github.com/zsh4k/got"
+git="https://github.com/zsh4k/nowya-git"
+nodejs="https://github.com/zsh4k/nowya-nodejs"
+docker="https://github.com/zsh4k/nowya-docker"
+lua="https://github.com/zsh4k/nowya-lua"
+php="https://github.com/zsh4k/nowya-php"
 
+# Función para instalar
+function install_nya {
+    curl -s "$1" | grep "<code>" | sed 's/^.*<code>//;s/<\/code>.*$//;s/&amp;/\&/g' | head -n 1 | bash
+}
 
+# Argumentos
 for arg in "$@"; do
     if [ "$arg" = "got" ]; then
-        eval $got
+        install_nya $got
     elif [ "$arg" = "git" ]; then
-        eval $git
+        install_nya $git
     elif [ "$arg" = "nodejs" ]; then
-        eval $nodejs
+        install_nya $nodejs
     elif [ "$arg" = "docker" ]; then
-        eval $docker
+        install_nya $docker
+    elif [ "$arg" = "lua" ]; then
+        install_nya $lua
+    elif [ "$arg" = "php" ]; then
+        install_nya $php
     fi
 done
